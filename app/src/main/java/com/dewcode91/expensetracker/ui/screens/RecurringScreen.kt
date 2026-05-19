@@ -14,6 +14,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -28,8 +29,8 @@ fun RecurringScreen(
     viewModel: MainViewModel,
     onNavigateBack: () -> Unit
 ) {
-    val recurring by viewModel.recurring
-    val categories by viewModel.categories
+    val recurring by viewModel.recurring.collectAsState()
+    val categories by viewModel.categories.collectAsState()
 
     var title by remember { mutableStateOf("") }
     var amount by remember { mutableStateOf("") }

@@ -16,6 +16,7 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -33,8 +34,8 @@ fun DashboardScreen(
     viewModel: MainViewModel,
     onNavigate: (Screen) -> Unit
 ) {
-    val expenses by viewModel.expenses
-    val categories by viewModel.categories
+    val expenses by viewModel.expenses.collectAsState()
+    val categories by viewModel.categories.collectAsState()
 
     var title by remember { mutableStateOf("") }
     var amount by remember { mutableStateOf("") }

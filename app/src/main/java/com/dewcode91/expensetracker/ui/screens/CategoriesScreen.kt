@@ -10,6 +10,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -23,7 +24,7 @@ fun CategoriesScreen(
     viewModel: MainViewModel,
     onNavigateBack: () -> Unit
 ) {
-    val categories by viewModel.categories
+    val categories by viewModel.categories.collectAsState()
     var name by remember { mutableStateOf("") }
     var colorHex by remember { mutableStateOf("#FF8A65") }
 

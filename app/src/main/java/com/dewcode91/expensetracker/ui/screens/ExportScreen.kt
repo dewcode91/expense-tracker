@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -25,7 +26,7 @@ fun ExportScreen(
     onNavigateBack: () -> Unit
 ) {
     val context = LocalContext.current
-    val expenses by viewModel.expenses
+    val expenses by viewModel.expenses.collectAsState()
 
     Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
         Text(text = "Export CSV")
