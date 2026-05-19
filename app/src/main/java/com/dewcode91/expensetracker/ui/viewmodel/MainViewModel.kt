@@ -31,15 +31,27 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val budgets: StateFlow<List<Budget>> = repository.observeBudgets()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
 
-    fun addQuickExpense() {
+    fun addExpense(
+        title: String,
+        amount: Double,
+        categoryId: Long,
+        date: LocalDate,
+        note: String? = null,
+        receiptUri: String? = null,
+        isRecurring: Boolean = false,
+        recurringId: Long? = null
+    ) {
         viewModelScope.launch {
-            val categoryId = categories.value.firstOrNull()?.id ?: 0
             repository.upsertExpense(
                 Expense(
-                    title = "Sample Expense",
-                    amount = 12.50,
+                    title = title,
+                    amount = amount,
                     categoryId = categoryId,
-                    date = LocalDate.now()
+                    date = date,
+                    note = note,
+                    receiptUri = receiptUri,
+                    isRecurring = isRecurring,
+                    recurringId = recurringId
                 )
             )
         }
