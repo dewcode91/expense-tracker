@@ -89,7 +89,7 @@ fun ExpenseNavGraph(
                 ExpenseScreen(viewModel = viewModel)
             }
             composable(Screen.Settings.route) {
-                SettingsScreen()
+                SettingsScreen(viewModel = viewModel)
             }
             composable(Screen.Categories.route) {
                 CategoriesScreen(viewModel = viewModel, onNavigateBack = { navController.popBackStack() })
