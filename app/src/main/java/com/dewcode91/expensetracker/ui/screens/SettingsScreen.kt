@@ -5,11 +5,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -40,6 +38,8 @@ fun SettingsScreen(viewModel: MainViewModel) {
     val categories by viewModel.categories.collectAsState()
     val recurring by viewModel.recurring.collectAsState()
     val budgets by viewModel.budgets.collectAsState()
+
+    val frequencyOptions: List<String> = listOf("DAILY", "WEEKLY", "MONTHLY")
 
     var categoryName by remember { mutableStateOf("") }
     var categoryColor by remember { mutableStateOf("#FF8A65") }
@@ -152,7 +152,7 @@ fun SettingsScreen(viewModel: MainViewModel) {
                         expanded = recurringFrequencyExpanded,
                         onDismissRequest = { recurringFrequencyExpanded = false }
                     ) {
-                        listOf("DAILY", "WEEKLY", "MONTHLY").forEach { option ->
+                        for (option in frequencyOptions) {
                             DropdownMenuItem(
                                 text = { Text(option) },
                                 onClick = {
