@@ -6,7 +6,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -44,13 +43,13 @@ fun ExpenseNavGraph(
                 BudgetsScreen(viewModel = viewModel, onNavigateBack = { navController.popBackStack() })
             }
             composable(Screen.Charts.route) {
-                ChartsScreen(viewModel = viewModel, onNavigateBack = { navController.popBackStack() })
+                ChartsScreen(onNavigateBack = { navController.popBackStack() })
             }
             composable(Screen.Export.route) {
                 ExportScreen(viewModel = viewModel, onNavigateBack = { navController.popBackStack() })
             }
             composable(Screen.Receipts.route) {
-                ReceiptsScreen(viewModel = viewModel, onNavigateBack = { navController.popBackStack() })
+                ReceiptsScreen(onNavigateBack = { navController.popBackStack() })
             }
         }
     }
